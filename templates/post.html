@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{%block main%}
+	<a href="{% url 'index' %}">Home</a>
+	<h1>Upload Your video</h1>
+		{% for message in messages%}
+            <p style="color:blue;">{{message}}</p>
+        {%endfor%}
+		<form action="" method="POST">
+		{%csrf_token%}
+		<label for="dscription">Enter caption:</label><br>
+		<textarea name="dscription" placeholder="Enter the caption"></textarea><br>
+
+		<label for="link">Enter Youtuve Link:</label><br>
+		<input type="url" name="link" placeholder="Enter Youtube Link"><br>
+		<input type="submit" value="Post">
+
+		</form>
+{%endblock%}
+	

@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{%block main%}
+
+	<a href="{% url 'index' %}">Home</a>
+
+	<h1>Name: {{user.name}}<h1>
+	<h5>Liker List</h5>
+	<ul>
+		{% for like in likes%}
+		<li>{{like.user}}</li>
+		{%endfor%}
+	</ul>
+
+	<h5>Disliker List</h5>
+	<ul>
+		{% for dislike in dislikes%}
+		<li>{{dislike.user}}</li>
+		{%endfor%}
+	</ul>
+{%endblock%}
