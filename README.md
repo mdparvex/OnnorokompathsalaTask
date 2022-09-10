@@ -1,2 +1,2 @@
 # OnnorokompathsalaTask
-This tusk is given by onnorokom pathsala.
+This task is given by onnorokom pathsala.
