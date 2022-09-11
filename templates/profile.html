@@ -1,17 +1,14 @@
 {% extends 'base.html'%}
 {%block main%}
 	<a href="{% url 'index' %}">Home</a>
-	<h1>Upload Your video</h1>
+	<h1>Please Enter Your Information ! without entering name you can not post</h1>
 		{% for message in messages%}
             <p style="color:blue;">{{message}}</p>
         {%endfor%}
 		<form action="" method="POST">
 		{%csrf_token%}
-		<label for="dscription">Enter caption:</label><br>
-		<textarea name="dscription" placeholder="Enter the caption"></textarea><br>
-
-		<label for="link">Enter Youtube Link:</label><br>
-		<input type="url" name="link" placeholder="Enter Youtube Link"><br>
+		<label for="link">Enter Name:</label><br>
+		<input type="text" name="name" placeholder="Enter your name"><br>
 		<input type="submit" value="Post">
 
 		</form>

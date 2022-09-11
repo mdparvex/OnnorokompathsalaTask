@@ -22,14 +22,16 @@
 			<br>
 			<p>views:{{post.view_count}}</p>
 			{% if user.is_authenticated %}
-			<a href="/likepost?post_id={{post.id}}">Like</a> :{{post.like_count}} liked |
-			<a href="/dislikepost?post_id={{post.id}}">disike</a>:{{post.dislike_count}} disliked |
-			<a href="{%url 'detail' post.id%}">detail</a>
+				<a href="/likepost?post_id={{post.id}}">Like</a> :{{post.like_count}} liked |
+				<a href="/dislikepost?post_id={{post.id}}">disike</a>:{{post.dislike_count}} disliked |
+			
+				<a href="{%url 'detail' post.id%}">detail</a>
 			{%endif%}
 		<hr>	
 		{%endfor%}
 		<h1>{{pos.like_count}}</h1>
 		
 		</div>
+		
 	</body>
 {%endblock%}

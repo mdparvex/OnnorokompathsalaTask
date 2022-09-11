@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Post, Profile, Like, Dislike, CustomUser
 
+
 # Create your views here.
 def index(request):
     post = Post.objects.all()
@@ -10,7 +11,7 @@ def index(request):
 
 def likepost(request):
     user = request.user
-    post_id = request.GET.get('post_id')
+    post_id = request.GET['post_id']
 
     post = Post.objects.get(id=post_id)
 
@@ -30,7 +31,7 @@ def likepost(request):
 
 def dislikepost(request):
     user = request.user
-    post_id = request.GET.get('post_id')
+    post_id = request.GET['post_id']
 
     post = Post.objects.get(id=post_id)
 
@@ -59,19 +60,37 @@ def detail(request, id):
     user1= CustomUser.objects.get(email=post.user)
     user = Profile.objects.get(user=user1)
 
+
     return render(request, 'postdetail.html', {'user':user,'likes':like, 'dislikes':dislike})
 
 @login_required
 def post(request):
-    if request.method=='POST':
-        user= request.user
-        description = request.POST['dscription']
-        video_link = request.POST['link']
+    try:
+        user = Profile.objects.get(user=request.user)
+    except:
+        user=None
+    if user is None:
+        if request.method=='POST':
+            user = request.user
+            name = request.POST['name']
 
-        if len(description)==0 or len(video_link)==0:
-            messages.info(request, 'Any field is empty')
+            if len(name)<1:
+                messages.info(request, 'Name should not be blank')
+                return render(request,'profile.html')
+            pr = Profile(user=user, name=name)
+            pr.save()
             return redirect('post')
-        po = Post(user=user, postdescription=description, video_link=video_link)
-        po.save()
-        return redirect('index')
-    return render(request, 'post.html')
+        return render(request, 'profile.html')
+    else:
+        if request.method=='POST':
+            user= request.user
+            description = request.POST['dscription']
+            video_link = request.POST['link']
+
+            if len(description)==0 or len(video_link)==0:
+                messages.info(request, 'Any field is empty')
+                return redirect('post')
+            po = Post(user=user, postdescription=description, video_link=video_link)
+            po.save()
+            return redirect('index')
+        return render(request, 'post.html')
