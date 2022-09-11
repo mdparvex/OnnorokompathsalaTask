@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\onnorokom",
-    "\\templates",
     "\\templates\\account",
-    "\\videoshare",
     "\\videoshare\\migrations"
   ],
-  "SelectedNode": "\\videoshare\\models.py",
+  "SelectedNode": "\\runtime.txt",
   "PreviewInSolutionExplorer": false
 }
