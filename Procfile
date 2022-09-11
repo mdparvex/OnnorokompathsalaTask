@@ -1,0 +1,1 @@
+web: gunicorn onnorokom.wsgi --log-file -
